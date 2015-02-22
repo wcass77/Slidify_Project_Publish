@@ -60,7 +60,7 @@ balance.cont <- principle * exp(r*t)
 interest.cont <- balance.cont - principle
 ```
 ```{r echo = FALSE}
-options(scipen = 10, digits = 2)
+options(scipen = 999, digits = 2)
 ```
 #### The balance: $`r balance`
 #### The interest: $`r interest`

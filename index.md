@@ -61,7 +61,7 @@ balance.cont <- principle * exp(r*t)
 interest.cont <- balance.cont - principle
 ```
 
-#### The balance: $1.4532944 &times; 10<sup>4</sup>
-#### The interest: $4532.9440828
-#### The balance (continuous compounding): $1.4551159 &times; 10<sup>4</sup>
-#### The interest (continuous compounding): $4551.1590586
+#### The balance: $14532.94
+#### The interest: $4532.94
+#### The balance (continuous compounding): $14551.16
+#### The interest (continuous compounding): $4551.16
