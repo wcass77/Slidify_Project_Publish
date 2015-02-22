@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Compound Interest App</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Compound Interest App">
+  <meta name="author" content="Willy Cass">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Compound Interest App</h1>
+    <h2>Computes Compound Interest</h2>
+    <p>Willy Cass<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>What It Does</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>This app calculates the amount of money in an account at a certain time based on 
+compound interest.<br></li>
+<li>The principle is the amount in the account on the start date. </li>
+<li>The annual interest rate is the rate ofincrease of the principle, in percent per year, not taking into account compounding. </li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>What It Does (Continued)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>The number of compounding periods is the number of times per year the amount of interest 
+from the last period is computed and then added to the total. </li>
+<li>The start and end dates define the period of time over which the interest accrues.</li>
+<li>The algorithm computes interest based on the number of completed periods between
+the dates. </li>
+<li>The periods starting on the start date and having a length of 365.25
+divided by number of periods per year. </li>
+<li>The rate of increase for each period is the annual rate divided by the number of periods per year. </li>
+<li>The overall increase in the account balance and the value and difference for continuous compounding are also given.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Example</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Suppose I have $10,000 on 1/1/2015</li>
+<li>I put it in a savings account with an interest rate of 2.5%</li>
+<li>Interest in the account is compounded 4 times a year</li>
+<li>What will my balance be on 1/2/2030? </li>
+<li>The code on the next slide shows how this can be calculated in R</li>
+<li>The app uses similar code to calculate compound interest, with controls for the variables!</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Example (Continued)</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">principle &lt;- 10000  #starting amount
+r &lt;- .025           #Interest rate, as a fraction
+n &lt;- 4              #Number of compounding periods per year
+t0 &lt;- as.Date(&#39;2015-01-01&#39;) #start date
+t1 &lt;- as.Date(&#39;2030-01-02&#39;) #end date
+t.days &lt;- t1 - t0
+t &lt;- as.numeric(t.days/365.25) #convert time to years
+balance &lt;- principle * (1 + r/n) ^ (trunc(t * n))
+interest &lt;- balance - principle
+balance.cont &lt;- principle * exp(r*t)
+interest.cont &lt;- balance.cont - principle
+</code></pre>
+
+<h4>The balance: $1.4532944 &times; 10<sup>4</sup></h4>
+
+<h4>The interest: $4532.9440828</h4>
+
+<h4>The balance (continuous compounding): $1.4551159 &times; 10<sup>4</sup></h4>
+
+<h4>The interest (continuous compounding): $4551.1590586</h4>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='What It Does'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='What It Does (Continued)'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Example'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Example (Continued)'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
